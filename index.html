@@ -11,7 +11,7 @@
     <div id="canvas"></div>
     <!-- id 可以直接用来做全局变量 -->
     <script>
-      canvas.onclick = (e) => {
+      canvas.onmousemove = (e) => {
         //监听 canvas 的事件，这里先用 onclick 事件，出问题再改
         console.log(e.clientX);
         console.log(e.clientY);
@@ -27,8 +27,8 @@
         div.style.height = "6px"; //使点击出来的为一个6px的矩形框
         div.style.marginLeft = "-3px";
         div.style.marginTop = "-3px"; //鼠标的箭头指的位置是矩形框的中间
-        div.style.borderRadius = "50%";//变圆
-        div.style.backgroundColor = "black";//实心，此时可去掉 border
+        div.style.borderRadius = "50%"; //变圆
+        div.style.backgroundColor = "black"; //实心，此时可去掉 border
         canvas.appendChild(div);
         //让div在canvas里，而不是在内存里
       };
