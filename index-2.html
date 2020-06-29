@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>画板</title>
+    <link rel="stylesheet" href="style-2.css" />
+    <!-- 引入一个CSS样式文档 -->
+  </head>
+  <body>
+    <div id="canvas"></div>
+    <!-- id 可以直接用来做全局变量 -->
+    <script>
+      canvas.onmousemove = (e) => {
+        //监听 canvas 的事件，这里先用 onclick 事件，出问题再改
+        //将 onclick 换成 onmousemove 即点换线
+        console.log(e.clientX);
+        console.log(e.clientY);
+        // console.log 调试大法
+        let div = document.createElement("div");
+        //让文档创建一个元素div，默认在内存里，不在 canvas 里
+        div.style.position = "absolute";
+        //让 div 里的内联元素样式为 absolute
+        div.style.left = e.clientX + "px";
+        div.style.top = e.clientY + "px";
+        //注意加单位
+        div.style.width = "6px";
+        div.style.height = "6px"; //使点击出来的为一个6px的矩形框
+        div.style.marginLeft = "-3px";
+        div.style.marginTop = "-3px"; //鼠标的箭头指的位置是矩形框的中间
+        div.style.borderRadius = "50%"; //变圆
+        div.style.backgroundColor = "black"; //实心，此时可去掉 border
+        canvas.appendChild(div);
+        //让div在canvas里，而不是在内存里
+      };
+    </script>
+  </body>
+</html>

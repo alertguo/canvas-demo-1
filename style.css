@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 #canvas {
-  height: 100vh;
-  border: 1px solid red;
+  /* height: 100vh;
+  width: 100vw;
+  border: 1px solid red; */
+  display: block;
 }
+/* 暂定这样，后面会有问题，
+目的，既没有左右，又没有上下的滚动条 */

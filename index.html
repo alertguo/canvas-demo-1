@@ -8,31 +8,41 @@
     <!-- 引入一个CSS样式文档 -->
   </head>
   <body>
-    <div id="canvas"></div>
-    <!-- id 可以直接用来做全局变量 -->
+    <canvas id="canvas" width="100" height="100"></canvas>
     <script>
+      let canvas = document.getElementById("canvas"); //获取 canvas
+      let ctx = canvas.getContext("2d");
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
+      //把canvas的宽高变成文档的宽高(注意不要变成body的宽高，宽度合适，但是高度只有body的高)
+
+      let painting = false; //painting 是自己取的名字
+
+      ctx.fillStyle = "blue"; //填充样式
+
+      canvas.onmousedown = () => {
+        painting = true;
+      }; //鼠标按下时 painting = true
+
       canvas.onmousemove = (e) => {
-        //监听 canvas 的事件，这里先用 onclick 事件，出问题再改
-        //将 onclick 换成 onmousemove 即点换线
-        console.log(e.clientX);
-        console.log(e.clientY);
-        // console.log 调试大法
-        let div = document.createElement("div");
-        //让文档创建一个元素div，默认在内存里，不在 canvas 里
-        div.style.position = "absolute";
-        //让 div 里的内联元素样式为 absolute
-        div.style.left = e.clientX + "px";
-        div.style.top = e.clientY + "px";
-        //注意加单位
-        div.style.width = "6px";
-        div.style.height = "6px"; //使点击出来的为一个6px的矩形框
-        div.style.marginLeft = "-3px";
-        div.style.marginTop = "-3px"; //鼠标的箭头指的位置是矩形框的中间
-        div.style.borderRadius = "50%"; //变圆
-        div.style.backgroundColor = "black"; //实心，此时可去掉 border
-        canvas.appendChild(div);
-        //让div在canvas里，而不是在内存里
+        if (painting === true) {
+          ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+        } else {
+          console.log("什么都不做");
+        }
       };
+      //如果painting === true ，执行画点的命令，否则什么都不做
+      canvas.onmouseup = () => {
+        painting = false;
+      };
+      //鼠标抬起时 painting = false
+
+
+      // canvas.onmousemove = (e) => {
+      //   console.log(e.clientX);
+      //   console.log(e.clientY);
+      //   ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10); //间距左，右，宽，高
+      // }; //监听鼠标
     </script>
   </body>
 </html>
