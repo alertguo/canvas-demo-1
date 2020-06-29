@@ -4,13 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>画板</title>
-    <link rel="stylesheet" href="style-2.css" />
-    <!-- 引入一个CSS样式文档 -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #canvas {
+        height: 100vh;
+        border: 1px solid red;
+      }
+    </style>
   </head>
   <body>
     <div id="canvas"></div>
     <!-- id 可以直接用来做全局变量 -->
     <script>
+      //用div实现画连续实心点，没有设置开关
+
       canvas.onmousemove = (e) => {
         //监听 canvas 的事件，这里先用 onclick 事件，出问题再改
         //将 onclick 换成 onmousemove 即点换线
