@@ -18,7 +18,7 @@
 
       let painting = false; //painting 是自己取的名字
 
-      ctx.fillStyle = "blue"; //填充样式
+      ctx.fillStyle = "black"; //填充样式
 
       canvas.onmousedown = () => {
         painting = true;
@@ -26,17 +26,20 @@
 
       canvas.onmousemove = (e) => {
         if (painting === true) {
-          ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+          ctx.beginPath();
+          ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+          //圆心到左边框距离，上,半径，起始弧度0，中止弧度2π
+          ctx.stroke();
+          ctx.fill(); //填充
         } else {
           console.log("什么都不做");
         }
       };
-      //如果painting === true ，执行画点的命令，否则什么都不做
+      //如果painting === true ，执行画矩形点的命令，否则什么都不做
       canvas.onmouseup = () => {
         painting = false;
       };
       //鼠标抬起时 painting = false
-
 
       // canvas.onmousemove = (e) => {
       //   console.log(e.clientX);
